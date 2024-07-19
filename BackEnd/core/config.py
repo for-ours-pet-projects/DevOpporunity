@@ -16,9 +16,10 @@ BASE_DIR = Path(__file__).parent.parent
 
 DB_PATH = f'{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}'
 
-
+#DB_PATH = BASE_DIR / "db.sqlite3"
 class DbSettings(BaseModel):
-    url: str = f"postgresql+asyncpg:///{DB_PATH}"
+    url: str = f"postgresql+asyncpg://{DB_PATH}"
+    #url: str = f"sqlite+aiosqlite:///{DB_PATH}"
     # echo: bool = False
     echo: bool = True
 

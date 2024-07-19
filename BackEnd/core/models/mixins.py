@@ -38,13 +38,13 @@ class CityRelationMixin:
     def city_id(cls) -> Mapped[int]:
         return mapped_column(
             ForeignKey("city.id"),
-            unique=cls._user_id_unique,
-            nullable=cls._user_id_nullable,
+            unique=cls._city_id_unique,
+            nullable=cls._city_id_nullable,
         )
 
     @declared_attr
     def city(cls) -> Mapped["User"]:
         return relationship(
             "City",
-            back_populates=cls._user_back_populates,
+            back_populates=cls._city_back_populates,
         )
