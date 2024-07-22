@@ -5,7 +5,7 @@ __all__ = (
     'Favorite_filter',
     'User',
     'Vacancy',
-    'temp_vacancies'
+    'Temp_vacancies'
 )
 
 from .base import Base
@@ -14,3 +14,4 @@ from .favorite_filters import Favorite_filter
 from .user import User
 from .vacancy import Vacancy
 from .temp_vacancies import Temp_vacancies
+from .db_helper import DatabaseHelper, db_helper_obj

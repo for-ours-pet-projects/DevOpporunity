@@ -34,5 +34,5 @@ def rates():
         if cur_line:
             if cur_line[1].text in currencies:
                 currencies[cur_line[1].text] = float(cur_line[4].text.replace(',', '.')) / float(cur_line[2].text.replace(',', '.'))
-
+    currencies['BYR'] = currencies['BYN']
     return currencies

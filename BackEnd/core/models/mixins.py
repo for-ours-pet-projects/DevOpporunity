@@ -43,7 +43,7 @@ class CityRelationMixin:
         )
 
     @declared_attr
-    def city(cls) -> Mapped["User"]:
+    def city(cls) -> Mapped["City"]:
         return relationship(
             "City",
             back_populates=cls._city_back_populates,

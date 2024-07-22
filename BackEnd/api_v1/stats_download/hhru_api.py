@@ -43,22 +43,19 @@ async def download():
             work_schedule = vacancy["schedule"]["name"]
             programming_language = vacancy["key_skills"]
             date_uploaded = datetime.datetime.now()
-
-            output.append(
-                (
-                    name,
-                    salary_range_min,
-                    salary_range_max,
-                    city,
-                    work_location,
-                    employment_type,
-                    specialization,
-                    work_experience,
-                    work_schedule,
-                    programming_language,
-                    date_uploaded,
-                )
-            )
-
-    return output
-
+            output = {
+                "name": name,
+                "description": vacancy['description'],
+                "link": vacancys["url"],
+                "city": city,
+                "salary_range_min": salary_range_min,
+                "salary_range_max": salary_range_max,
+                #'work_location': work_location,
+                #'employment_type': employment_type,
+                #'specialization': specialization,
+                #'work_experience': work_experience,
+                #'work_schedule': work_schedule,
+                #'programming_language': programming_language,
+                #'date_uploaded': date_uploaded
+            }
+            yield output

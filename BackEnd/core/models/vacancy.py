@@ -5,7 +5,7 @@ from .mixins import CityRelationMixin
 
 
 class Vacancy(CityRelationMixin, Base):
-    _city_back_populates = "favorite_filter"
+    _city_back_populates = "vacancy"
     _city_id_nullable = True
     name: Mapped[str]
     description: Mapped[str]

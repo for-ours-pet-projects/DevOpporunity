@@ -5,9 +5,9 @@ from .base import Base
 
 
 class Temp_vacancies(Base):
-    name: Mapped[str]
-    description: Mapped[str]
-    link: Mapped[str]
-    city: Mapped[str]
-    salary_range_min: Mapped[float]
-    salary_range_max: Mapped[float]
+    name: Mapped[str | None]
+    description: Mapped[str | None]
+    link: Mapped[str | None]
+    city: Mapped[str | None]
+    salary_range_min: Mapped[float | None]
+    salary_range_max: Mapped[float | None]
