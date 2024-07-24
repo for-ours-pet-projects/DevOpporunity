@@ -8,6 +8,6 @@ if TYPE_CHECKING:
 
 
 class City(Base):
-    city: Mapped[str] = mapped_column(unique=True)
+    city: Mapped[str] = mapped_column(unique=True, nullable=True)
     favorite_filter: Mapped[list["Favorite_filter"]] = relationship(back_populates='city')
     vacancy: Mapped[list["Vacancy"]] = relationship(back_populates='city')

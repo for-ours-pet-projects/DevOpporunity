@@ -8,6 +8,7 @@ class TempBase(BaseModel):
     city: str | None
     salary_range_min: float | None
     salary_range_max: float | None
+    vacancy_id: str
 
 
 class TempCreate(TempBase):

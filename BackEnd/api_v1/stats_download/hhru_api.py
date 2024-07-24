@@ -1,3 +1,4 @@
+import asyncio
 import datetime
 import requests
 
@@ -10,10 +11,13 @@ async def download():
     first_page = session.get(url).json()
     output = []
     currency_rates = c.rates()
-    for i in range(first_page["pages"] - 99):
+    for i in range(first_page["pages"]-90):
         next_page = session.get(url, params={"page": i}).json()
         for vacancys in next_page["items"]:
+
             vacancy = session.get(vacancys["url"]).json()
+            if 'errors' in vacancy:
+                continue
             vacancy_id = vacancy["id"] + "_hhru"
             name = vacancy["name"]
             currency = (
@@ -43,6 +47,7 @@ async def download():
             work_schedule = vacancy["schedule"]["name"]
             programming_language = vacancy["key_skills"]
             date_uploaded = datetime.datetime.now()
+
             output = {
                 "name": name,
                 "description": vacancy['description'],
@@ -50,6 +55,7 @@ async def download():
                 "city": city,
                 "salary_range_min": salary_range_min,
                 "salary_range_max": salary_range_max,
+                "vacancy_id": vacancy_id
                 #'work_location': work_location,
                 #'employment_type': employment_type,
                 #'specialization': specialization,
@@ -59,3 +65,4 @@ async def download():
                 #'date_uploaded': date_uploaded
             }
             yield output
+

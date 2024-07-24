@@ -11,6 +11,11 @@ router = APIRouter(tags=["download"])
 
 
 @router.get("/")
+async def main():
+    return 'hello world'
+
+
+@router.get("/download")
 async def download(
     session: AsyncSession = Depends(db_helper_obj.scoped_session_dependency),
 ):
@@ -20,3 +25,17 @@ async def download(
         await crud.create_temp(session=session, vacancy_in=vacancy_in)
     return await crud.get_temps(session=session)
 
+
+@router.get("/drop")
+async def download(
+    session: AsyncSession = Depends(db_helper_obj.scoped_session_dependency),
+):
+    await crud.delete_temp(session)
+
+
+@router.get("/merge")
+async def download(
+    session: AsyncSession = Depends(db_helper_obj.scoped_session_dependency),
+):
+    await crud.merge(session=session)
+    return await crud.get_vacancies(session=session)

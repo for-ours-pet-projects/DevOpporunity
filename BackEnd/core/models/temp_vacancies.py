@@ -3,7 +3,6 @@ from sqlalchemy.orm import Mapped
 from .base import Base
 
 
-
 class Temp_vacancies(Base):
     name: Mapped[str | None]
     description: Mapped[str | None]
@@ -11,3 +10,4 @@ class Temp_vacancies(Base):
     city: Mapped[str | None]
     salary_range_min: Mapped[float | None]
     salary_range_max: Mapped[float | None]
+    vacancy_id: Mapped[str]
