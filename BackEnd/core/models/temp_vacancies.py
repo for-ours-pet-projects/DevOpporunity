@@ -3,6 +3,7 @@ from sqlalchemy.orm import Mapped
 from .base import Base
 
 
+# Таблица для временных вакансий, мы сюда скачиваем сайтик, потом мержим с основной базой
 class Temp_vacancies(Base):
     name: Mapped[str | None]
     description: Mapped[str | None]

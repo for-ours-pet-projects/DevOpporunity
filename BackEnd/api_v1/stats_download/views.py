@@ -7,7 +7,7 @@ from core.models.db_helper import db_helper_obj
 from sqlalchemy.ext.asyncio import AsyncSession
 from .schemas import TempCreate
 
-router = APIRouter(tags=["download"])
+router = APIRouter()
 
 
 @router.get("/")

@@ -9,6 +9,7 @@ from .schemas import TempCreate
 from sqlalchemy import delete
 
 
+# Тут хранится взаимодействие с бд
 async def get_temps(session: AsyncSession) -> list[Temp_vacancies]:
     stmt = select(Temp_vacancies).order_by(Temp_vacancies.id)
     result: Result = await session.execute(stmt)
@@ -21,6 +22,7 @@ async def get_temp(session: AsyncSession, temp_id: int) -> Temp_vacancies | None
 
 
 async def create_temp(session: AsyncSession, vacancy_in: dict) -> Temp_vacancies:
+    # Просто добавляем новую вакансию, проверяя pydantic
     vacancy_in_pydantic = TempCreate(**vacancy_in)
     vacancy = Temp_vacancies(**vacancy_in_pydantic.model_dump())
     session.add(vacancy)
@@ -84,6 +86,7 @@ async def merge(
                 salary_range_max=temp.salary_range_max,
                 city_id=city.id,  # Использование ID города
                 date_appearance=datetime.utcnow(),
+                date_disappearance=datetime.utcnow(),
                 vacancy_id=temp.vacancy_id,
             )
             session.add(new_vacancy)

@@ -4,7 +4,7 @@ import requests
 
 from . import currency as c
 
-
+# Тут мы делаем запрос к api, и берем нужные нам параметры
 async def download():
     url = "https://api.hh.ru/vacancies"
     session = requests.Session()

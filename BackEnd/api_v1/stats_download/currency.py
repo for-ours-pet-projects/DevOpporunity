@@ -2,19 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 
 
-
-
-def convert(num, cur_from):
-    if cur_from != "RUR":
-        url = f"https://finance.rambler.ru/calculators/converter/{num}-{cur_from}-RUB/"
-
-        page = requests.get(url)
-        soup = BeautifulSoup(page.text, "html.parser")
-        inputs = soup.findAll("span", class_="_1wjU3")
-        return inputs[1]
-    else:
-        return num
-
+# Здесь мы парсим курс валют
 
 def rates():
     currencies = {"UZS": None,
