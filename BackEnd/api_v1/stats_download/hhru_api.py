@@ -4,6 +4,7 @@ import requests
 
 from . import currency as c
 
+
 # Тут мы делаем запрос к api, и берем нужные нам параметры
 async def download():
     url = "https://api.hh.ru/vacancies"
@@ -11,12 +12,12 @@ async def download():
     first_page = session.get(url).json()
     output = []
     currency_rates = c.rates()
-    for i in range(first_page["pages"]-90):
+    for i in range(first_page["pages"] - 90):
         next_page = session.get(url, params={"page": i}).json()
         for vacancys in next_page["items"]:
 
             vacancy = session.get(vacancys["url"]).json()
-            if 'errors' in vacancy:
+            if "errors" in vacancy:
                 continue
             vacancy_id = vacancy["id"] + "_hhru"
             name = vacancy["name"]
@@ -46,23 +47,22 @@ async def download():
             work_experience = vacancy["experience"]["name"]
             work_schedule = vacancy["schedule"]["name"]
             programming_language = vacancy["key_skills"]
-            date_uploaded = datetime.datetime.now()
+            date_uploaded = vacancy["published_at"]
 
             output = {
                 "name": name,
-                "description": vacancy['description'],
+                "description": vacancy["description"],
                 "link": vacancys["url"],
                 "city": city,
                 "salary_range_min": salary_range_min,
                 "salary_range_max": salary_range_max,
-                "vacancy_id": vacancy_id
+                "vacancy_id": vacancy_id,
+                #"date_uploaded": date_uploaded,
                 #'work_location': work_location,
                 #'employment_type': employment_type,
                 #'specialization': specialization,
                 #'work_experience': work_experience,
                 #'work_schedule': work_schedule,
                 #'programming_language': programming_language,
-                #'date_uploaded': date_uploaded
             }
             yield output
-

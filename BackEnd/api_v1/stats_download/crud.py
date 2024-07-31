@@ -61,7 +61,7 @@ async def merge(
                     description=temp.description,
                     salary_range_min=temp.salary_range_min,
                     salary_range_max=temp.salary_range_max,
-                    date_disappearance=datetime.utcnow(),  # Обновляем время изменения
+                    date_disappearance=datetime.utcnow().date(),  # Обновляем время изменения
                     vacancy_id=temp.vacancy_id,
                 )
             )
@@ -85,8 +85,8 @@ async def merge(
                 salary_range_min=temp.salary_range_min,
                 salary_range_max=temp.salary_range_max,
                 city_id=city.id,  # Использование ID города
-                date_appearance=datetime.utcnow(),
-                date_disappearance=datetime.utcnow(),
+                date_appearance=datetime.utcnow().date(),
+                date_disappearance=datetime.utcnow().date(),
                 vacancy_id=temp.vacancy_id,
             )
             session.add(new_vacancy)
